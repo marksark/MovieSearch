@@ -1,6 +1,6 @@
-var express = require('express');
-var app = express();
-var request = require('request');
+const express = require('express');
+const app = express();
+const request = require('request');
 app.set("view engine", "ejs");
 
 app.get("/", function(req, res){
@@ -10,17 +10,19 @@ app.get("/", function(req, res){
 //set up our route
 app.get("/results", function(req,res){
   //define the search term
-  var query = req.query.search;
+  const query = req.query.search;
   //request the Web API info with search term
   request('http://www.omdbapi.com/?s=' + query +'&apikey=thewdb', function(error,response,body){
     //check for errors
     if(!error && response.statusCode == 200){
       //turn current data in string form into an object we can manipulate
-      var data = JSON.parse(body);
+      const data = JSON.parse(body);
       //render the results page if all above are met
       res.render("results", {data: data});
-      console.log(typeof data + " is what 'data' is");
-      console.log(typeof body + " is what 'body' is");
+      // console.log(typeof data + " is what 'data' is");
+      // console.log(typeof body + " is what 'body' is");
+    } else {
+      console.log(err, 'err');
     }
   })
 });

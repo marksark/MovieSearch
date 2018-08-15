@@ -1,12 +1,16 @@
 <h1>Restults Page!</h1>
-<ul>
-<% data["Search"].forEach(function(movie) { %>
+<p>
+<% if (data["Search"] != undefined) { data["Search"].forEach(function(movie) { %>
     <li>
       <b><%= movie["Title"] %></b> -  <%= movie["Year"] %>
       <% console.log(typeof movie["Year"]); %>
     </li>
-  <% }) %>
-</ul>
+  <% }) } else { %>
+    <p>
+      Sorry there are no titles that match this string in IMDB's database. Please search again.
+    </p>
+<%  } %>
+</p>
 
 
 <a href="/">Search Again!</a>
