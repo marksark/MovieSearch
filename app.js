@@ -1,13 +1,15 @@
-const express = require('express');
-const app = express();
-const request = require('request');
+const express = require('express'),
+      app     = express(),
+      request = require('request');
+
 app.set("view engine", "ejs");
 
+//set default view
 app.get("/", function(req, res){
   res.render('search');
-})
+});
 
-//set up our route
+//set up our results route
 app.get("/results", function(req,res){
   //define the search term
   const query = req.query.search;
